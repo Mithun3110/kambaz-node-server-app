@@ -2,6 +2,8 @@ import express from 'express'
 import Hello from "./Hello.js"
 import UserRoutes from './Kambaz/Users/routes.js';
 import CourseRoutes from "./Kambaz/Courses/routes.js";
+import ModuleRoutes from "./Kambaz/Modules/routes.js";
+import EnrollmentsRoutes from './Kambaz/Enrollments/routes.js';
 import Lab5 from './Lab5/index.js'
 import cors from "cors";
 import session from "express-session";
@@ -28,10 +30,10 @@ app.use(session(sessionOptions));
 app.use(express.json());
 UserRoutes(app);
 CourseRoutes(app);
+EnrollmentsRoutes(app);
+ModuleRoutes(app);
 Lab5(app);
 Hello(app)
 const port = process.env.PORT || 4000;
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+app.listen(port);
 
