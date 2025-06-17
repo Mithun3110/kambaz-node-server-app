@@ -11,6 +11,12 @@ export default function CourseRoutes(app) {
    }
    res.json(course);
  });
+ const findUsersForCourse = async (req, res) => {
+   const { cid } = req.params;
+   const users = await enrollmentsDao.findUsersForCourse(cid);
+   res.json(users);
+ };
+ app.get("/api/courses/:cid/users", findUsersForCourse);
     app.delete("/api/courses/:courseId", async (req, res) => {
     const { courseId } = req.params;
     const status = await dao.deleteCourse(courseId);
